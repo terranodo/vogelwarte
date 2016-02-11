@@ -10,23 +10,15 @@ Install geonode with::
     $ pip install -r shared/requirements.txt 
     $ pip install -e vogelwarte
 
-Usage in development mode
+Usage with Vagrant 
 -------------------------
 
-run geoserver from within the geonode folder with::
-
-    $ paver start_geoserver
-
-then run Django from within the vogelwarte folder::
-
-    $ python manage.py runserver
+    $ vagrant up production
 
 
 Usage in production
 -------------------
 
-Edit the apache conf file and poit the wsgi directive to the vogelwarte one:: 
+Add your `production` host in /etc/ansible/hosts
 
-    https://github.com/terranodo/vogelwarte/blob/master/vogelwarte/wsgi.py
-
-Vogelwarte inherits all the geonode settings in /etc/geonode/local_settings.py but also implements it's own for any necessary override.
+    $ ansible-playbook playbook.yml
