@@ -1,0 +1,1 @@
+-e git+https://github.com/terranodo/geonode.git@vogelwarte#egg=GeoNode
