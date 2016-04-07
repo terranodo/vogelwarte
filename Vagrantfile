@@ -6,14 +6,15 @@ Vagrant.configure("2") do |config|
   config.ssh.username = 'vagrant'
 
   config.vm.define :production do |production|
-  	production.vm.network :public_network, :bridge => 'eth0', :auto_config => false
+    production.vm.network :public_network, :bridge => 'eth0', :auto_config => false
     config.vm.network "forwarded_port", guest: 8000, host: 8000
     production.vm.provider :virtualbox do |vb|
         vb.customize [ "modifyvm", :id, "--name", "Vogelwarte-Production","--memory", 4096 ]
-  	end
+    end
     config.vm.provision "ansible" do |ansible|
-	ansible.host_key_checking = false
-	ansible_inventory_path = "inventory.ini"
+  ansible.host_key_checking = false
+  ansible.sudo = true
+  ansible_inventory_path = "inventory.ini"
         ansible.playbook = "playbook.yml"
     end
     config.vm.network :private_network, ip: "192.168.56.151"
