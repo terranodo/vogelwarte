@@ -56,9 +56,9 @@
   tags: [elasticsearch]
 
 - name: supervisor-elasticsearch
-  copy: src={{ role_name }}/files/supervisor-elasticsearch.conf dest=/etc/supervisor/conf.d
+  copy: src=ansible-geonode/files/supervisor-elasticsearch.conf dest=/etc/supervisor/conf.d
   tags: [elasticsearch]
-  notify: reload supervisor
+  #notify: reload supervisor
 
 - name: reload supervisor
   shell: /usr/bin/supervisorctl reread && /usr/bin/supervisorctl update
